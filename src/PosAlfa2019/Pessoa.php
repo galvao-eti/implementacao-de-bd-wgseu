@@ -4,6 +4,10 @@ require 'Abstraction/BancoDeDados.php';
 
 class Pessoa implements PosAlfa\Abstraction\BancoDeDados {
 
+    const DSN = 'mysql:host=localhost;dbname=trab_galvao';
+    const USER = 'root';
+    const PASS = 'root';
+
     public $id;
     public $nome;
 
@@ -39,7 +43,7 @@ class Pessoa implements PosAlfa\Abstraction\BancoDeDados {
 
     public function select() {
         try {
-           $pdo = $this->connect('mysql:host=localhost;dbname=trab_galvao', 'root', 'root');
+           $pdo = $this->connect(self::DSN, self::USER, self::PASS);
            $stmt = $this->prepare($pdo, 'SELECT * FROM pessoa');
            $stmt->execute();
            var_dump($stmt->fetch());
